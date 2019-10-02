@@ -2,11 +2,8 @@
 
 # I do not really care about what you do with this code,
 # you can make your own bot with it or whatever
-# you don't have to but it would be nice if you gave me some credit
-# the only thing i will not allow is making a 'premium' pass on the
-# bot that you earn money from. So ultimately do whatever you want apart
-# from selling or making money out of iy
-
+# you don't have to but it would be nice if you gave me some credit.
+# So ultimately do whatever you want as long as if you follow the licence
 
 import discord
 import random
@@ -338,3 +335,4 @@ async def on_ready():
 client.loop.create_task(update_stats())
 client.run("TOKEN")
 
+# copyright 2019 Cbot Studio
