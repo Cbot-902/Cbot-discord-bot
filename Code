@@ -14,7 +14,7 @@ import time
 import asyncio
 from discord.ext import commands
 
-TOKEN = 'NTkxMzExNzU5MjQ0MTMyNDI1.XSH4CA.n13wlxFQlIMs2yHfZ73geuYwryY'
+TOKEN = 'your token'
 
 client = commands.Bot(command_prefix="-")
 bot = discord.client
