@@ -1,0 +1,340 @@
+# PLEASE READ
+
+# I do not really care about what you do with this code,
+# you can make your own bot with it or whatever
+# you don't have to but it would be nice if you gave me some credit
+# the only thing i will not allow is making a 'premium' pass on the
+# bot that you earn money from. So ultimately do whatever you want apart
+# from selling or making money out of iy
+
+
+import discord
+import random
+import time
+import asyncio
+from discord.ext import commands
+
+TOKEN = 'NTkxMzExNzU5MjQ0MTMyNDI1.XSH4CA.n13wlxFQlIMs2yHfZ73geuYwryY'
+
+client = commands.Bot(command_prefix="-")
+bot = discord.client
+
+messages = 0
+joined = 0
+
+
+async def update_stats():
+    await client.wait_until_ready()
+    global messages, joined
+
+    while not client.is_closed():
+        try:
+            with open("stats.txt", "a") as f:
+                f.write(f"Time: {int(time.time())}, Messages: {messages}, Members Joined: {joined}\n")
+
+            messages = 0
+            joined = 0
+
+            await asyncio.sleep(5)
+        except Exception as e:
+            print(e)
+            await asyncio.sleep(5)
+
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+yes = [
+    "Yes",
+    "yes",
+    "Sure",
+    "sure",
+    "Do it",
+    "do it",
+    "Yeah",
+    "yeah",
+    "Yee",
+    "yee",
+    ":yee:",
+]
+
+heads = [
+    "heads",
+    "tails",
+    "Heads",
+    "Tails",
+]
+
+no = [
+    "No",
+    "no",
+    "Nope",
+    "nope",
+    "Don't do it",
+    "don't do it",
+    "Don't do that",
+    "don't do that",
+]
+
+
+responses = [
+    "Hi",
+    "Hey",
+    "Go away I'm playing smash",
+    "Not now I'm making a smm course",
+    "Hello",
+    "Go away",
+    "Not now",
+    "SHUT UP I HATE YOU",
+    "How is you",
+    "Hiya :wink:",
+    ":wave:",
+]
+
+possible_responses = [
+    "That is a resounding no",
+    "It is not looking likely",
+    "Too hard to tell",
+    "it is quite possible",
+    "Definitely",
+    "Concentrate and ask again",
+    "Don’t count on it",
+    "It is certain",
+    "It is decidedly so",
+    "Most likely",
+    "My reply is no",
+    "My sources say no",
+    "Outlook good",
+    "Outlook not so good",
+    "Reply hazy try again",
+    "Signs point to yes",
+    "Very doubtful",
+    "You may rely on it",
+    "Without a doubt",
+]
+
+responses2 = [
+    "Good",
+    "Lovely",
+    "Great",
+    "Wonderful",
+    "Depressed",
+    "ANGRY",
+    "TRIGGERED",
+]
+
+responses3 = [
+    "Byeee",
+    "No don't go",
+    "Goodbye",
+    "Cya",
+    "See you :eyes:  ",
+    "STAY RIGHT HERE",
+]
+
+responses4 = [
+    "https://cleanmemes.files.wordpress.com/2019/07/download-60.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-2.png",
+    "https://cleanmemes.files.wordpress.com/2019/07/65679417_3049562441750732_9142882245193760768_n.jpg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-5.png",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-56.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-57.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-58.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-59.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-36-1.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-37-1.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-39-1.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-12-1.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-51.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-52.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-53.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-48.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-26.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-27.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-28.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-30.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-23.jpeg",
+    "https://cleanmemes.files.wordpress.com/2019/07/download-38.jpeg",
+    "https://pics.me.me/me-nintendo-switch-my-ceiling-fa-does-this-count-36296882.png",
+    "https://static2.cbrimages.com/wordpress/wp-content/uploads/2017/11/mario-nintendo-memes.jpg",
+    "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2018/03/nintendo-memes-adult-1.jpg",
+    "https://static2.thegamerimages.com/wordpress/wp-content/uploads/2017/11/nintendo-memes-2.jpg",
+    "https://i.ytimg.com/vi/BxHz0jLDtjY/hqdefault.jpg",
+    "https://66.media.tumblr.com/cd0239f30edde0f481d9392671ff9361/tumblr_pob5juEZL21ur1vbj_540.jpg",
+
+]
+
+responses5 = [
+    "__commands__",
+    "-summon-cbot/-hi/hello = summon Cbot!",
+    "-how-is-you = how is Cbot today",
+    "-8ball[question] = answers a yes or no question",
+    "-meme = get a meme!",
+    "-members = get a list of all the members",
+    "-bye = say goodbye",
+    "-say[something] = make Cbot say something",
+    "-ping = Pong!",
+
+]
+
+responses6 = "suggestion:"
+
+good = [
+    "I is good",
+    "i is good",
+    "great",
+    "Great",
+    "I is great",
+    "i is great",
+    "I'm good",
+    "i'm good",
+    "im good",
+    "Im good"
+    "I'm great",
+    "i'm great",
+    "im great",
+    "Im great"
+]
+
+
+@client.event
+async def on_message(message):
+    global messages
+    messages += 1
+    if message.content.startswith("-summon-cbot"):
+        await message.channel.send(random.choice(responses))
+    if message.content.startswith("-8ball"):
+        await message.channel.send(random.choice(possible_responses))
+    if message.content.startswith("-how-is-you"):
+        await message.channel.send(random.choice(responses2))
+    if message.content.startswith("-bye"):
+        await message.channel.send(random.choice(responses3))
+    if message.content.startswith("-ping"):
+        await message.channel.send("Pong!")
+    if message.content.startswith("-say"):
+        mes = message.content.split()
+        output = ""
+        for word in mes[1:]:
+            output += word
+            output += " "
+        await message.channel.send(output)
+    if message.content.upper().startswith("-SAY"):
+        args = message.content.split(" ")
+        message.delete(message)
+        await message.channel.send("%s" % (" ".join(args[1:])))
+    if message.content.startswith("-meme"):
+        await message.channel.send(random.choice(responses4))
+    if message.content.startswith('-members'):
+        x = message.guild.members
+        for member in x:
+            await message.channel.send(member.name)
+    if message.content.startswith("-hi"):
+        await message.channel.send(random.choice(responses))
+    if message.content.startswith("-hello"):
+        await message.channel.send(random.choice(responses))
+    ...
+    if message.content.startswith("-help"):
+        embed = discord.Embed(title="__Commands__", color=0x00ff00)
+        embed.add_field(name="-help", value="Shows this message")
+        embed.add_field(name="-summon-cbot", value="Summon Cbot!")
+        embed.add_field(name="-hello", value="Summon Cbot!")
+        embed.add_field(name="-hi", value="Summon Cbot!")
+        embed.add_field(name="-members", value="Get a list of members")
+        embed.add_field(name="-meme", value="Get a meme")
+        embed.add_field(name="-bye", value="Say goodbye")
+        embed.add_field(name="-ping", value="Pong!")
+        embed.add_field(name="-8ball[question]", value="Answers a yes or no question")
+        embed.add_field(name="-say[something]", value="Make Cbot say something")
+        embed.add_field(name="-how-is-you", value="How is Cbot today")
+        embed.add_field(name="-report", value="use -info-report")
+        embed.add_field(name="-suggest", value="use -info-suggest")
+        embed.add_field(name="-self-destruct", value="DO NOT USE!")
+        await message.channel.send(content=None, embed=embed)
+    ...
+    if message.content.startswith("-report"):
+        channel = client.get_channel(logging channel id)
+        mes = message.content.split()
+        output = ""
+        for word in mes[1:]:
+            output += word
+            output += " "
+        await channel.send(output)
+    if message.content.startswith("-suggest"):
+        channel = client.get_channel(logging channel id)
+        mes = message.content.split()
+        output = ""
+        for word in mes[1:]:
+            output += word
+            output += " "
+        await channel.send(output)
+
+    if message.content.startswith("hello"):
+        channel = message.channel
+        await channel.send("hey \n"
+                           "how is you?")
+
+        def check(m):
+            return m.content in ("i is good", "Good", "great", "Great", "good", "tired", "")
+
+        msg = await client.wait_for('message', check=check)
+        await channel.send("_ _" .format(msg))
+
+        def check(m):
+            return m.content in ("how is you", "you", "You", "You?", "you?", "How is you", "How is you?", "how is you?")
+
+        await client.wait_for('message', check=check)
+        await channel.send(random.choice(responses2))
+
+    if message.content.startswith("Hi"):
+        channel = message.channel
+        await channel.send("hey")
+        await channel.send("would you like to play heads or tails?")
+
+        def check(m):
+            return m.content in ("yes", "sure", "yee", "Yes", "Sure", "Yee",)
+
+        msg = await client.wait_for('message', check=check)
+        await channel.send("Ok \n"
+                           'i pick \n')
+        await channel.send(random.choice(heads))
+        await channel.send("the winner is...")
+        await channel.send(random.choice(heads))
+
+    if message.content.startswith("-self-destruct"):
+        channel = message.channel
+        await channel.send("Are you sure about this \n"
+                           "I think we should stop")
+
+        def check(m):
+            return m.content in ("Do it", "do it", "yes", "Yes", "I'm sure", "i'm sure")
+
+        msg = await client.wait_for('message', check=check)
+        await channel.send("Ok, this was your idea")
+        await channel.send("https://media.tenor.com/images/09b180f4c0febaac2bacd5dd312c9787/tenor.gif".format(msg))
+        await channel.send("https://media.tenor.com/images/09b180f4c0febaac2bacd5dd312c9787/tenor.gif".format(msg))
+        await channel.send("https://media.tenor.com/images/09b180f4c0febaac2bacd5dd312c9787/tenor.gif".format(msg))
+        await channel.send("https://media.tenor.com/images/09b180f4c0febaac2bacd5dd312c9787/tenor.gif".format(msg))
+        await channel.send('https://media.giphy.com/media/A1r6w4nsCIq1q/giphy.gif'.format(msg))
+        
+        
+@client.event
+async def on_member_join(member):
+    global joined
+    joined += 1
+    channel = client.get_channel(552878044956721200)
+    await channel.send(f"""Welcome to your server {member.mention}!""")
+
+
+@client.event
+async def on_ready():
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
+
+
+client.loop.create_task(update_stats())
+client.run("TOKEN")
+
